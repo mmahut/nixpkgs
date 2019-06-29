@@ -5092,6 +5092,8 @@ in
 
   overmind = callPackage ../applications/misc/overmind { };
 
+  ovirt-guest-agent = callPackage ../applications/virtualization/ovirt-guest-agent { };
+
   owncloud-client = libsForQt5.callPackage ../applications/networking/owncloud-client { };
 
   oxidized = callPackage ../tools/admin/oxidized { };

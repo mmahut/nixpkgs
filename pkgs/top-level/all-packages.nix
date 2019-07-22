@@ -663,6 +663,8 @@ in
 
   brakeman = callPackage ../development/tools/analysis/brakeman { };
 
+  beersmith = callPackage ../applications/misc/beersmith { };
+
   brewtarget = libsForQt5.callPackage ../applications/misc/brewtarget { } ;
 
   ec2_api_tools = callPackage ../tools/virtualization/ec2-api-tools { };

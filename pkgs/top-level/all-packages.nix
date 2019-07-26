@@ -6490,6 +6490,8 @@ in
 
   usbmuxd = callPackage ../tools/misc/usbmuxd {};
 
+  usbrip = callPackage ../tools/misc/usbrip { };
+
   usync = callPackage ../applications/misc/usync { };
 
   uwsgi = callPackage ../servers/uwsgi { };

@@ -2,18 +2,19 @@
 
 buildPythonPackage rec {
   pname = "koji";
-  version = "1.13.0";
+  version = "1.17.0";
   format = "other";
 
   src = fetchurl {
     url = "https://releases.pagure.org/koji/${pname}-${version}.tar.bz2";
-    sha256 = "18b18rcbdqqw33g7h20hf5bpbci2ixdi05yda1fvpv30c1kkzd8w";
+    sha256 = "0pzhcmgb3wwx16qz3b7r1y8c04raw5zn0ham2dc8lmmpxkiq668j";
   };
 
-  propagatedBuildInputs = [ pycurl six rpm dateutil ];
+#  postPatch = ''
+#    substituteInPlace requirements/pypi.txt --replace "koji >= 1.15" "koji"
+#    '';
 
-  # Judging from SyntaxError
-  #disabled = isPy3k;
+  propagatedBuildInputs = [ pycurl six rpm dateutil ];
 
   makeFlags = "DESTDIR=$(out)";
 
@@ -23,8 +24,11 @@ buildPythonPackage rec {
     rm -rf $out/nix
   '';
 
-  meta = {
-    maintainers = [ ];
-    platforms = stdenv.lib.platforms.unix;
+  meta = with stdenv.lib; {
+    description = "RPM building and tracking system";
+    homepage = "https://docs.pagure.org/koji/";
+    license = licenses.lgpl2;
+    maintainers = [ maintainers.mmahut ];
   };
+
 }

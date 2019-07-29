@@ -1,4 +1,4 @@
-{ stdenv, buildPythonApplication, buildPythonPackage, isPy3k, fetchurl, rpkg, offtrac, urlgrabber, pyopenssl, python_fedora }:
+{ stdenv, buildPythonApplication, buildPythonPackage, isPy3k, fetchurl, rpkg, offtrac, urlgrabber, pyopenssl, python_fedora, bugzilla, distro, pyyaml, freezegun, nose-cov, mock, koji }:
 
 let
   fedora_cert = buildPythonPackage rec {
@@ -15,21 +15,30 @@ let
   };
 in buildPythonApplication rec {
   pname = "fedpkg";
-  version = "1.29";
+  version = "1.37";
 
-  disabled = isPy3k;
+#  disabled = isPy3k;
 
   src = fetchurl {
     url = "https://releases.pagure.org/fedpkg/${pname}-${version}.tar.bz2";
-    sha256 = "1cpy5p1rp7w52ighz3ynvhyw04z86y8phq3n8563lj6ayr8pw631";
+    sha256 = "0153sgi9xlbz88x93hw2x5l7aap7291464srs3rc8pkas6d0ajcp";
   };
+
   patches = [ ./fix-paths.patch ];
-  propagatedBuildInputs = [ rpkg offtrac urlgrabber fedora_cert ];
+
+  postPatch = ''
+      substituteInPlace tests-requirements.txt --replace "mock == 1.0.1" "mock"
+      # Removing integration tests
+      rm test/test_{retire,cli,commands}.py
+   '';
+
+  checkInputs = [ mock ];
+  propagatedBuildInputs = [ rpkg offtrac urlgrabber fedora_cert bugzilla distro pyyaml freezegun nose-cov koji ];
 
   meta = with stdenv.lib; {
     description = "Subclass of the rpkg project for dealing with rpm packaging";
-    homepage = https://pagure.io/fedpkg;
+    homepage = "https://pagure.io/fedpkg";
     license = licenses.gpl2;
-    maintainers = with maintainers; [ ];
+    maintainers = [ maintainers.mmahut ];
   };
 }

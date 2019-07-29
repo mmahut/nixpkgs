@@ -1,9 +1,9 @@
---- orig/setup.py
-+++ new/setup.py
-@@ -27,10 +27,10 @@
-         'bin/fedpkg',
-         'bin/fedpkg-stage',
-     ],
+--- old/setup.py	2019-04-29 14:47:36.000000000 +0200
++++ new/setup.py	2019-07-29 08:38:15.947575914 +0200
+@@ -48,10 +48,10 @@
+     license="GPLv2+",
+     url="https://pagure.io/fedpkg",
+     packages=find_packages(),
 -    data_files=[(bash_completion_dir(), ['conf/bash-completion/fedpkg.bash']),
 -                ('/etc/rpkg', ['conf/etc/rpkg/fedpkg.conf',
 +    data_files=[('share/bash-completion/completions', ['conf/bash-completion/fedpkg.bash']),
@@ -13,4 +13,4 @@
 +                ('share/zsh/site-functions', ['conf/zsh-completion/_fedpkg']),
                  ],
  
-     tests_require=['nose', 'mock'],
+     install_requires=install_requires,

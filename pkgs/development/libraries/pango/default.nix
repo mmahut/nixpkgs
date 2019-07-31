@@ -18,8 +18,7 @@ in stdenv.mkDerivation rec {
     sha256 = "06qx5xzplx90z8fpkfk9d596kmc5n9a0qwplfnrqjkxbnbmzykq0";
   };
 
-  # FIXME: docs fail on darwin
-  outputs = [ "bin" "dev" "out" ] ++ optional (!stdenv.isDarwin) "devdoc";
+  outputs = [ "bin" "dev" "out" "devdoc" ];
 
   nativeBuildInputs = [
     meson ninja
@@ -37,7 +36,7 @@ in stdenv.mkDerivation rec {
     optional x11Support libXft;
 
   mesonFlags = [
-    "-Dgtk_doc=${if stdenv.isDarwin then "false" else "true"}"
+    "-Dgtk_doc=true"
   ];
 
 

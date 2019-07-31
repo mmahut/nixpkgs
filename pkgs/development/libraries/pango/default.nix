@@ -9,13 +9,13 @@ with stdenv.lib;
 
 let
   pname = "pango";
-  version = "1.43.0";
+  version = "1.44.1";
 in stdenv.mkDerivation rec {
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${stdenv.lib.versions.majorMinor version}/${name}.tar.xz";
-    sha256 = "1lnxldmv1a12dq5h0dlq5jyzl4w75k76dp8cn360x2ijlm9w5h6j";
+    sha256 = "0pzy7dgrkd7dpl3p73k1wgb2hcs30cwqbbsyf7afdjl3sd4vbyh7";
   };
 
   # FIXME: docs fail on darwin
@@ -36,17 +36,10 @@ in stdenv.mkDerivation rec {
   propagatedBuildInputs = [ cairo glib libintl ] ++
     optional x11Support libXft;
 
-  patches = [
-    (fetchurl {
-      # Add gobject-2 to .pc file
-      url = "https://gitlab.gnome.org/GNOME/pango/commit/546f4c242d6f4fe312de3b7c918a848e5172e18d.patch";
-      sha256 = "034na38cq98vk8gggn3yfr65jmv3jgig8d25zg89wydrandp14yr";
-    })
+  mesonFlags = [
+    "-Dgtk_doc=${if stdenv.isDarwin then "false" else "true"}"
   ];
 
-  mesonFlags = [
-    "-Denable_docs=${if stdenv.isDarwin then "false" else "true"}"
-  ];
 
   enableParallelBuilding = true;
 

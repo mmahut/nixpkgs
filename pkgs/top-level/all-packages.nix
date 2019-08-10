@@ -887,6 +887,8 @@ in
 
   xcodeenv = callPackage ../development/mobile/xcodeenv { };
 
+  xcsoar = libsForQt5.callPackage ../games/xcsoar { };
+
   ssh-agents = callPackage ../tools/networking/ssh-agents { };
 
   titaniumenv = callPackage ../development/mobile/titaniumenv { };

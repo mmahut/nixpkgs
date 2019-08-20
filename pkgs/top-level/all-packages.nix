@@ -24767,4 +24767,6 @@ in
   zfs-replicate = python3Packages.callPackage ../tools/backup/zfs-replicate { };
 
   runwayml = callPackage ../applications/graphics/runwayml {};
+
+  kodelife = callPackage ../applications/graphics/kodelife {};
 }

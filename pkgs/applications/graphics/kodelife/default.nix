@@ -4,6 +4,7 @@
 , glib
 , gst_all_1
 , xlibs
+, libGLU_combined
 }:
 
 stdenv.mkDerivation rec {
@@ -18,6 +19,7 @@ stdenv.mkDerivation rec {
   dontConfigure = true;
   dontBuild = true;
   dontStrip = true;
+  dontPatchELF = true;
 
   installPhase = ''
     mkdir -p $out/bin
@@ -32,6 +34,7 @@ stdenv.mkDerivation rec {
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-base
       xlibs.libX11
+      libGLU_combined
     ];
   in ''
     patchelf \

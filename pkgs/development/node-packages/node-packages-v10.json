@@ -86,6 +86,7 @@
 , "mocha"
 , "multi-file-swagger"
 , "neovim"
+, "next"
 , "nijs"
 , "node-gyp"
 , "node-gyp-build"

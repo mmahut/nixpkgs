@@ -18094,6 +18094,8 @@ in
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  star-charter = callPackage ../applications/science/astronomy/star-charter { };
+
   stig = callPackage ../applications/networking/p2p/stig { };
 
   stix-otf = callPackage ../data/fonts/stix-otf { };

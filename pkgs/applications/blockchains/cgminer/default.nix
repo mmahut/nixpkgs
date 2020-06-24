@@ -39,6 +39,10 @@ stdenv.mkDerivation rec {
                      "--enable-keccak"
                      "--enable-bflsc"];
 
+  patches = [
+    ./solo.patch
+  ];
+
   meta = with stdenv.lib; {
     description = "CPU/GPU miner in c for bitcoin";
     homepage = "https://github.com/ckolivas/cgminer";

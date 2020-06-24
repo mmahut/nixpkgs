@@ -1,0 +1,25 @@
+From ec79b06f6de370a2380498769ef0a4e8a7018fd1 Mon Sep 17 00:00:00 2001
+From: Marek Mahut <marek.mahut@gmail.com>
+Date: Wed, 24 Jun 2020 16:38:37 +0200
+Subject: [PATCH] Adding a null flag to enble solo mining
+
+---
+ cgminer.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/cgminer.c b/cgminer.c
+index 54739e41..b7d0cfb8 100644
+--- a/cgminer.c
++++ b/cgminer.c
+@@ -3085,6 +3085,8 @@ static bool gbt_solo_decode(struct pool *pool, json_t *res_val)
+ 	flags = json_string_value(json_object_get(coinbase_aux, "flags"));
+ 	default_witness_commitment = json_string_value(json_object_get(res_val, "default_witness_commitment"));
+ 
++  if (!flags) flags = "00000000000000";
++
+ 	if (!previousblockhash || !target || !version || !curtime || !bits || !coinbase_aux || !flags) {
+ 		applog(LOG_ERR, "Pool %d JSON failed to decode GBT", pool->pool_no);
+ 		return false;
+-- 
+2.26.2
+

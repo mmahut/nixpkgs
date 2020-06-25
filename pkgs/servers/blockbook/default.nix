@@ -14,8 +14,8 @@
 
 buildGoPackage rec {
   pname = "blockbook";
-  version = "0.3.2";
-  commit = "d1fd665";
+  version = "0.3.4";
+  commit = "eb4e10ac6";
 
   goPackagePath = "blockbook";
 
@@ -47,9 +47,6 @@ buildGoPackage rec {
     packr clean && packr
   '';
 
-  postInstall = ''
-    rm $bin/bin/{scripts,templates,trezor-common}
-  '';
 
   meta = with lib; {
     description = "Trezor address/account balance backend";

@@ -139,6 +139,7 @@
 , "parsoid"
 , "peerflix"
 , "peerflix-server"
+, "pm2"
 , "pnpm"
 , "postcss-cli"
 , "prettier"

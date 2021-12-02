@@ -6,13 +6,13 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "spotdl";
-  version = "3.7.2";
+  version = "3.9.0";
 
   src = fetchFromGitHub {
     owner = "spotDL";
     repo = "spotify-downloader";
     rev = "v${version}";
-    sha256 = "sha256-ftSnlruSv+RtvjTpZPYg9Z2EK4th8NbDhVlG2eIc87s=";
+    sha256 = "sha256-UG1Nmn+W9MdTQP7U4KRo7MxD6mWJhIcg3xwadB0pons=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
@@ -27,6 +27,11 @@ python3.pkgs.buildPythonApplication rec {
     requests
     unidecode
     youtube-dl
+    yt-dlp
+  ];
+
+  pythonImportsCheck = [
+    "rapidfuzz.cpp_process"
   ];
 
   checkInputs = with python3.pkgs; [

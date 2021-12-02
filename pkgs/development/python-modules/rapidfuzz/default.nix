@@ -41,6 +41,7 @@ buildPythonPackage rec {
     "rapidfuzz.string_metric"
     "rapidfuzz.process"
     "rapidfuzz.utils"
+    "rapidfuzz.cpp_process"
   ];
 
   meta = with lib; {

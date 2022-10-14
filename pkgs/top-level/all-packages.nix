@@ -10119,6 +10119,8 @@ with pkgs;
 
   pgcenter = callPackage ../tools/misc/pgcenter { };
 
+  pgdash = callPackage ../tools/misc/pgdash { };
+
   pgmetrics = callPackage ../tools/misc/pgmetrics { };
 
   pgsync = callPackage ../development/tools/database/pgsync { };

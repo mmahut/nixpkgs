@@ -62,8 +62,7 @@ buildGoModule rec {
 
   postInstall = ''
     mkdir -p $out/share/
-    cp -r $src/static/templates/ $out/share/
-    cp -r $src/static/css/ $out/share/
+    cp -r $src/static/* $out/share/
   '';
 
   passthru.tests = {

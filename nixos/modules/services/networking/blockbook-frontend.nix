@@ -146,6 +146,15 @@ let
         description = "Location of the HTML templates. By default, ones shipped with the package are used.";
       };
 
+      internalTemplatesDir = mkOption {
+        type = types.path;
+        default = "${config.package}/share/internal_templates/";
+        defaultText = literalExpression ''"''${package}/share/internal_templates/"'';
+        example = literalExpression ''"''${dataDir}/internal_templates/static/"'';
+        description = "Location of the HTML internal templates. By default, ones shipped
+with the package are used.";
+      };
+
       extraConfig = mkOption {
         type = types.attrs;
         default = {};
@@ -220,6 +229,7 @@ in
           preStart = ''
             ln -sf ${cfg.templateDir} ${cfg.dataDir}/static/
             ln -sf ${cfg.cssDir} ${cfg.dataDir}/static/
+            ln -sf ${cfg.internalTemplatesDir} ${cfg.dataDir}/static/
             ${optionalString (cfg.rpc.passwordFile != null && cfg.configFile == null) ''
               CONFIGTMP=$(mktemp)
               ${pkgs.jq}/bin/jq ".rpc_pass = \"$(cat ${cfg.rpc.passwordFile})\"" ${configFile} > $CONFIGTMP
